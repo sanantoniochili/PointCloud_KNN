@@ -1,13 +1,15 @@
 # PointCloud_KNN
 Using Deep Neural Net PointNet to get pointcloud's vector and find K Nearest Neighbours (projection-KD tree,JL lemma))
 
-Data
+Data  
+
 The retrieval pipeline was implemented using provided pointclouds which correspond to
 shapes of the following categories: bathtub, bed, chair, desk, dresser, monitor, night
 stand, sofa, table, toilet. The points per provided shape were 1024 and each point was
 placed to 3-dimensional space.
 
 Training
+
 I used the provided train set to train the neural network with 15 epochs. The results can
 be found inside the ”log” directory. After the training, I used the test set to evaluate
 the results and extracted the desirable vectors that describe each provided shape through
@@ -16,6 +18,7 @@ right after the max-pooling step of the classification and, thus, giving us 1024
 points per shape.
 
 Nearest Neighbours
+
 All of the vectors were projected to a lower-dimensional Euclidean space (40-dimensional
 space in this example) following the JohnsonLindenstrauss lemma. After that the vectrors
 from the training set were used to construct a kd-tree whose leaves hold the indices
@@ -24,6 +27,7 @@ the queries imposed to the kd-tree. The results were the k neighbouring projecte
 from the training set for k=10,20,50,100,200,300.
 
 Evaluation
+
 Once the nearest neighbours were found, I computed the F1 score of the results based on
 caomparison between the labels of the neighbours and the label of the query. The mean
 values per class (10) and the total mean scores were also computed for each of the values
